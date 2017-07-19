@@ -16,11 +16,14 @@ socket.on('newMessage', function(message){
     jQuery('#messages').append(li);
 });
 
-socket.emit('createMessage', {
-    from: 'test',
-    text: 'hi'
-}, function(data){
-    console.log(data);
+socket.on('newLocationMessage', function(message){
+    var li = jQuery('<li></li>');
+    var a = jQuery('<a target="_blank">My Current Location</a>');
+    li.text(`${message.from}: `);
+    a.attr('href', message.url);
+    li.appent(a);
+
+    jQuery('#messages').append(li);
 });
 
 jQuery('#message-form').on('submit', function(e){
