@@ -18,8 +18,8 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
     
     socket.on('join', (params, callback) => {
-        if (!isRealString(params.name) || !isRealString(params.room)){
-            callback('Name and Room name are required.');
+        if (!isRealString(params.name) || !isRealString(params.room)) {
+            return callback('Name and room name are required.');
         }
 
         socket.join(params.room);
